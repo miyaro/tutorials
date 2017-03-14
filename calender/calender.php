@@ -11,6 +11,15 @@ $period = new DatePeriod(
         $body .= sprintf('<td class="youbi_%d">%d</td>',$day->format('w'),
         $day->format('d'));
     }
+    
+    
+    $head = '';
+    $firstDayOfNextMonth = new DateTime('first day of next month');
+    while($firstDayOfNextMonth->format('w')>0){
+        $head .= sprintf('<td class="gray">%d</td>', $firstDayOfNextMonth->format('d'));
+        $firstDayOfNextMonth->add(new DateInterval('P1D'));
+        
+    }
 
 ?>
 
@@ -41,7 +50,7 @@ $period = new DatePeriod(
                 <td>Sat</td>
             </tr>
             <tr>
-                <?php echo $body; ?>
+                <?php echo $body . $head ?>
             <!--    <td class="youbi_0">1</td>-->
             <!--    <td class="youbi_1">2</td>-->
             <!--    <td class="youbi_2">3</td>-->
