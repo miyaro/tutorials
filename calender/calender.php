@@ -1,7 +1,11 @@
 <?php
 
+$t = '2015-08';
+$thisMonth = new DateTime($t);
+$yearMonth = $thisMonth->format('F,Y');
+
 $tail  = '';//前月末日
-$lastDayOfPrevMonth = new Datetime('last day of previous month');
+$lastDayOfPrevMonth = new Datetime('last day of ' . $yearMonth . ' -1 month');
 while($lastDayOfPrevMonth->format('w')<6){
     $tail = sprintf('<td class="gray">%d</td>', $lastDayOfPrevMonth->format('d')).
     $tail;
@@ -11,9 +15,9 @@ while($lastDayOfPrevMonth->format('w')<6){
 
 $body = '';
 $period = new DatePeriod(
-    new DateTime('first day of this month'),
+    new DateTime('first day of ' . $yearMonth),
     new DateInterval('P1D'),
-    new DateTime('first day of next month')
+    new DateTime('first day of' .$yearMonth . '+1 month')
     );
     foreach ($period as $day){
         if($day->format('w') % 7 === 0){$body .= '</tr><tr>'; }
@@ -23,7 +27,7 @@ $period = new DatePeriod(
     
     
     $head = '';
-    $firstDayOfNextMonth = new DateTime('first day of next month');
+    $firstDayOfNextMonth = new DateTime('first day of' .$yearMonth . '+1 month');
     while($firstDayOfNextMonth->format('w')>0){
         $head .= sprintf('<td class="gray">%d</td>', $firstDayOfNextMonth->format('d'));
         $firstDayOfNextMonth->add(new DateInterval('P1D'));
@@ -46,7 +50,7 @@ $period = new DatePeriod(
         <thead>
             <tr>
                 <th><a href = "">&laquo;</a></th>
-                <th colspan ="5">August 2015</th>
+                <th colspan ="5"><?php echo $yearMonth;?></th>
                 <th><a href = "">&raquo;</a></th>
             </tr>
         </thead>
