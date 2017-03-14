@@ -20,7 +20,7 @@ $cal = new \calender\Calender();
     <table>
         <thead>
             <tr>
-                <th><a href = "/practice/tutorials/calender/?t=<?php echo h($cal->prev); ?>"></a>&laquo;</a></th>
+                <th><a href = "/practice/tutorials/calender/?t=<?php echo h($cal->prev); ?>">&laquo;</a></th>
                 <th colspan ="5"><?php echo h($cal->yearMonth);?></th>
                 <th><a href = "/practice/tutorials/calender/?t=<?php echo h($cal->next); ?>">&raquo;</a></th>
             </tr>
