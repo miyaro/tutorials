@@ -11,12 +11,9 @@ try{
     $db = new PDO(PDO_DSN,DB_USERNAME,DB_PASSWORD);
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    //insert
-    $db->exec("insert into users (name,score) values ('taguchi',55)");
-    echo "user added!";
-    
-    //disconnect
-    $db = null;
+    $stmt = $db->prepare("insert into users (name,score) value(?,?)");
+    $stmt->execute(['taguchi',44]);
+    echo"inserted:" . $db->lastInsertId();
         
 }catch(PDOException $e){
     echo $e->getMessage();
