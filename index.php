@@ -11,12 +11,19 @@ try{
     $db = new PDO(PDO_DSN,DB_USERNAME,DB_PASSWORD);
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     //insert
-    // $stmt = $db->prepare("insert into users (name,score) value(?,?)");
+    $stmt = $db->prepare("insert into users (name,score) value(?,?)");
     // $stmt->execute(['taguchi',44]);
-    $stmt = $db->prepare("insert into users (name,score) value(:name,:score)");
-    $stmt->execute([':name'=>'fkoji', ':score'=>80]);
-    echo"inserted:" . $db->lastInsertId();
-        
+    
+    $name = 'taguchi';
+    $stmt->bindValue(1,$name,PDO::PARAM_STR);
+    $score = 23;
+    $stmt->bindValue(2,$score,PDO::PARAM_INT);
+    $stmt->execute();
+    $score =44;
+    $stmt->bindValue(2,$score,PDO::PARAM_INT);
+    $stmt->execute();
+    
+    
 }catch(PDOException $e){
     echo $e->getMessage();
     exit;
