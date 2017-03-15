@@ -10,9 +10,11 @@ try{
     //conect
     $db = new PDO(PDO_DSN,DB_USERNAME,DB_PASSWORD);
     $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
-    $stmt = $db->prepare("insert into users (name,score) value(?,?)");
-    $stmt->execute(['taguchi',44]);
+    //insert
+    // $stmt = $db->prepare("insert into users (name,score) value(?,?)");
+    // $stmt->execute(['taguchi',44]);
+    $stmt = $db->prepare("insert into users (name,score) value(:name,:score)");
+    $stmt->execute([':name'=>'fkoji', ':score'=>80]);
     echo"inserted:" . $db->lastInsertId();
         
 }catch(PDOException $e){
