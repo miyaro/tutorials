@@ -24,7 +24,7 @@ $todos = $todoApp->getAll();
     <div id ="container">
         <h1>Todos</h1>
         <form action="" id="new_todo_form">
-            <input type="text" id = "new_todo" placeholder="what needs to be done?" >
+            <input type="text" id = "new_todo" placeholder="今日のやることを入力して下さい。" >
         </form>
         <ul id ='todos'>
         <?php foreach ($todos as $todo) : ?>
