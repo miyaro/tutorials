@@ -41,13 +41,13 @@ class Todo{
        }
        
         $this->_db->beginTransaction();
-        $sql = sprintf("update todos set state = (state + 1) % 2 where id = %d",
-        $_POST['id']);
-        $stmt = $this->db->prepare($sql);
+        
+        $sql = sprintf("update todos set state = (state + 1) %% 2 where id = %d",$_POST['id']);
+        $stmt = $this->_db->prepare($sql);
         $stmt->execute();
        
         $sql = sprintf("select state from todos where id = %d", $_POST['id']);
-        $stmt = $this->db->query($sql);
+        $stmt = $this->_db->query($sql);
         $state = $stmt->fetchColumn();
         
         $this->_db->commit();
@@ -58,6 +58,10 @@ class Todo{
     }
     
     private function _create(){
+        
+    }
+    
+    private function _delete(){
         
     }
 }

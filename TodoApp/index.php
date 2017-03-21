@@ -15,22 +15,22 @@ $todos = $todoApp->getAll();
 <html lang ="ja">
 <head>
     <meta charset = "utf-8">
-    <title>My Todo</title>
+    <title>My Todos</title>
     <link rel = "stylesheet" href="styles.css">
 </head>
 <body>
     <div id ="container">
         <h1>Todos</h1>
         <form action="">
-            <input type="text" placeholder="what needs to be done?" id = "new_todo">
+            <input type="text" id = "new_todo" placeholder="what needs to be done?" >
         </form>
-        <ul id ='#todos'>
+        <ul id ='todos'>
         <?php foreach ($todos as $todo) : ?>
-            <li id="todo_<?= h($todo->id); ?>" data_id="<?= h($todo->id); ?>">
-                <input type ="checkbox" class="update_todo" <?php if($todo->state === '1'){echo 'checked';}?>>
-                <span class="todo_title <?php if($todo->state === '1') { echo 'done'; } ?>"><?= h($todo->title); ?>
+            <li id="todo_<?= h($todo->id); ?>" data-id="<?= h($todo->id); ?>">
+                <input type="checkbox" class="update_todo" <?php if ($todo->state === '1') {echo  'checked'; } ?>>
+                <span class="todo_title <?php if ($todo->state === '1') { echo 'done'; } ?>"><?= h($todo->title); ?>
                 </span>
-                <div class = "delete_todo">x</div>
+                <div class="delete_todo">x</div>
             </li>        
             <?php endforeach;?> 
         </ul>
