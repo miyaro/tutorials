@@ -82,25 +82,28 @@ class Todo{
     }
     
     private function _create(){
+          if(!isset($_POST['title']) || $_POST['title'] === ''){
+            throw new \Exception('[create] title is not set!');
+       }
+
+        $sql = "insert into todos (title) values (:title)";
+        $stmt = $this->_db->query($sql);
+        $stmt->execute([':title' => $_POST['title']]);
         
+        return[
+            'id' => $this->_db->lasteInsertId()
+            ];
     }
     
     private function _delete(){
        if(!isset($_POST['id'])){
             throw new \Exception('[delete] is not set!');
        }
-
-        
-        $sql = sprintf("update todos set state = (state + 1) %% 2 where id = %d",$_POST['id']);
-        $stmt = $this->_db->prepare($sql);
-        $stmt->execute();
-       
+    
         $sql = sprintf("delete from todos where id = %d", $_POST['id']);
         $stmt = $this->_db->query($sql);
         $state = $stmt->fetchColumn();
         
-        $this->_db->commit();
-        
         return[];
-    }
+    }   
 }
