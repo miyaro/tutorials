@@ -12,6 +12,7 @@ class Todo{
     
     public function __construct(){
         $this->_createToken();
+        
         try{
             $this->_db = new \PDO(DSN, DB_USERNAME,DB_PASSWORD);
             $this->_db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -87,7 +88,7 @@ class Todo{
        }
 
         $sql = "insert into todos (title) values (:title)";
-        $stmt = $this->_db->query($sql);
+        $stmt = $this->_db->prepare($sql);
         $stmt->execute([':title' => $_POST['title']]);
         
         return[
@@ -101,8 +102,8 @@ class Todo{
        }
     
         $sql = sprintf("delete from todos where id = %d", $_POST['id']);
-        $stmt = $this->_db->query($sql);
-        $state = $stmt->fetchColumn();
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
         
         return[];
     }   
