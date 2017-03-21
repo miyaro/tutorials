@@ -19,5 +19,21 @@ $(function(){
             }
         })
     });
+        //delete
     
+    $('#todos').on('click','.delete_todo',function(){
+        //idを取得
+        var id = $(this).parents('li').data('id');
+        //ajax処理
+        if (confirm('are you sure?')){
+            $.post('_ajax.php',{
+                id: id,
+                mode:'delete',
+                token: $('#token').val()
+            },function(){
+                $('#todo_' + id).fadeOut(800);
+        })    
+        }
+        
+    });
 });

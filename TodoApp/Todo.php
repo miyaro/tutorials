@@ -86,6 +86,21 @@ class Todo{
     }
     
     private function _delete(){
+       if(!isset($_POST['id'])){
+            throw new \Exception('[delete] is not set!');
+       }
+
         
+        $sql = sprintf("update todos set state = (state + 1) %% 2 where id = %d",$_POST['id']);
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+       
+        $sql = sprintf("delete from todos where id = %d", $_POST['id']);
+        $stmt = $this->_db->query($sql);
+        $state = $stmt->fetchColumn();
+        
+        $this->_db->commit();
+        
+        return[];
     }
 }
