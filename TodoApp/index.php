@@ -34,12 +34,12 @@ $todos = $todoApp->getAll();
                 </span>
                 <div class="delete_todo">x</div>
             </li>        
-            <?php endforeach;?> 
-                <li id="todo_template" data-id="">
-                    <input type="checkbox" class="update_todo">
-                    <span class="todo_title"></span>
-                    <div class="delete_todo">x</div>
-                </li>        
+        <?php endforeach;?> 
+            <li id="todo_template" data-id="">
+                <input type="checkbox" class="update_todo">
+                <span class="todo_title"></span>
+                <div class="delete_todo">x</div>
+            </li>        
         </ul>
     </div><!--container-->
     <input type="hidden" id="token" value="<?= h($_SESSION['token']); ?>">
