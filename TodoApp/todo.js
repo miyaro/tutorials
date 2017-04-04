@@ -17,7 +17,7 @@ $(function(){
             if(res.state === '1'){
                 $('#todo_' + id).find('.todo_title').addClass('done');
             }else{
-                $('#todo_' + id).find('.todo_title').addClass('done');
+                $('#todo_' + id).find('.todo_title').removeClass('done');
             }
         })
     });
