@@ -1,11 +1,11 @@
 <?php
-
-$sales = [
-    "taguchi"  => 200,
-    "miyaguchi" => 1000,
-    "yamada" => 300,
-    ];
-    
-    foreach($sales as $key => $value){
-        echo"($key)$value";
+function warizan($val1,$val2){
+    try{
+        if($val2 === 0){
+            throw new Exception('0で割ることはできません');
         }
+        return $val1 / $val2;
+    }catch(Exception $e){
+        return $e->getMessage();
+    }
+}
