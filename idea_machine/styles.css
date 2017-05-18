@@ -1,0 +1,18 @@
+body{
+	font-family:Arial,sans-serif;
+	font-size:16px;
+}
+/*output_table*/
+.output{
+	margin: 0 auto;
+}
+
+/*side_bar*/
+.side_bar{
+}
+
+
+.submit_button{
+	display: inline-block;
+	margin: 10px 0;
+}
